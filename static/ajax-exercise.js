@@ -2,8 +2,10 @@
 
 function showFortune(evt) {
     // TODO: get the fortune and show it in the fortune-text div
-}
-
+    evt.preventDefault();
+    // using load because want to pull the result and display it
+    $("#fortune-text").load("/fortune");
+}     
 $('#get-fortune-button').on('click', showFortune);
 
 
@@ -16,7 +18,30 @@ function showWeather(evt) {
     evt.preventDefault();
     var url = "/weather?zipcode=" + $("#zipcode-field").val();
     // TODO: request weather with that URL and show the forecast in #weather-info
+    // using get because we want to change the data that we got before displaying it
+    $.get("/weather",
+        function (result) {
+            alert ("This works! Weather");
+        }
+    );
 }
+
+    function getStatus() {
+        $.get("/status",
+              function (result) {
+                alert("Got " + result);
+                console.log("Got " + result);
+              }
+          );
+        console.log("Next line ran");
+      }
+
+      $("#get-status").on('click', getStatus);
+
+
+
+
+
 
 $("#weather-form").on('submit', showWeather);
 
