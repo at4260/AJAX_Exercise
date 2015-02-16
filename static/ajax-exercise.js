@@ -9,9 +9,6 @@ function showFortune(evt) {
 $('#get-fortune-button').on('click', showFortune);
 
 
-
-
-
 // PART 2: SHOW WEATHER
 
 function showWeather(evt) {
@@ -19,35 +16,14 @@ function showWeather(evt) {
     var url = "/weather?zipcode=" + $("#zipcode-field").val();
     // TODO: request weather with that URL and show the forecast in #weather-info
     // using get because we want to change the data that we got before displaying it
-    $.get("/weather",
+    $.get(url,
         function (result) {
-            alert ("This works! Weather");
+            $("#weather-info").append(result.forecast, "<br/>", result.temp);
         }
     );
 }
 
-    function getStatus() {
-        $.get("/status",
-              function (result) {
-                alert("Got " + result);
-                console.log("Got " + result);
-              }
-          );
-        console.log("Next line ran");
-      }
-
-      $("#get-status").on('click', getStatus);
-
-
-
-
-
-
 $("#weather-form").on('submit', showWeather);
-
-
-
-
 
 
 // PART 3: ORDER MELONS
